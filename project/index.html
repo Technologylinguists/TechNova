@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>专业简历 - 科技语者</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #7c3aed;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        /* 简洁卡片设计 */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 头部样式 */
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        .name {
+            font-size: 2.25rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .title {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        /* 社交链接 */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            transition: color 0.2s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+        }
+
+        /* 内容区域 */
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        /* 技能条 */
+        .skill {
+            margin: 1.25rem 0;
+        }
+
+        .skill-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 4px;
+            width: 0;
+            transition: width 1s ease;
+        }
+
+        /* 时间线 */
+        .timeline {
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 1.75rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+            color: var(--text);
+        }
+
+        .timeline-date {
+            display: inline-block;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            background: rgba(37, 99, 235, 0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+        }
+
+        .timeline-item ul {
+            padding-left: 1rem;
+        }
+
+        .timeline-item li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* 联系信息 */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .contact-item i {
+            color: var(--primary);
+            font-size: 1.1rem;
+            width: 36px;
+            height: 36px;
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-item span {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* 技能标签 */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.25rem;
+        }
+
+        .skill-tag {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(37, 99, 235, 0.2);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem 1rem;
+            }
+
+            .name {
+                font-size: 2rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <img src="https://thirdwx.qlogo.cn/mmopen/vi_32/sRz7ibxGs2GiaWPHn6gNKdhZpddcWDSAkozd99YQJ7QlH1WcvbKxdUyVlibrgUpu8wUsYjZD7365Xib6dlibziard471voaIu5Dfuv1SXvpZE3Vow/0" alt="科技语者" class="avatar">
+        <h1 class="name">科技语者</h1>
+        <p class="title">高级全栈开发工程师</p>
+        <div class="social-links">
+            <a href="#" title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:admin@uopy.top" title="Email" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            <a href="#" title="Portfolio" aria-label="Portfolio"><i class="fas fa-globe"></i></a>
+        </div>
+    </header>
+
+    <div class="grid">
+        <div class="card">
+            <h2>个人简介</h2>
+            <p>拥有800年的全栈开发经验的技术专家，专注于构建高性能、可扩展的Web应用程序。擅长前端架构设计、性能优化和用户体验创新。</p>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+86 888 8888 8888</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>admin@uopy.top</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>上海, 中国</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>技术栈</h2>
+            <div class="skill">
+                <div class="skill-label">
+                    <span>JavaScript/TypeScript</span>
+                    <span>95%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width: 95%"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <div class="skill-label">
+                    <span>React/Next.js</span>
+                    <span>90%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width: 90%"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <div class="skill-label">
+                    <span>Node.js/NestJS</span>
+                    <span>85%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width: 85%"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <div class="skill-label">
+                    <span>数据库设计</span>
+                    <span>80%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width: 80%"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>工作经历</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>xxx科技股份有限公司</h3>
+                    <span class="timeline-date">2021-至今</span>
+                    <ul>
+                        <li>主导前端微服务架构设计</li>
+                        <li>实现Web应用性能优化方案</li>
+                        <li>带领上亿人前端团队</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h3>xxx互联网科技有限公司</h3>
+                    <span class="timeline-date">2018-2021</span>
+                    <ul>
+                        <li>使用React+Redux重构电商平台</li>
+                        <li>开发Node.js中间层服务</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>项目经验</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>智能数据可视化平台</h3>
+                    <span class="timeline-date">2022</span>
+                    <ul>
+                        <li>基于WebGL实现数据渲染</li>
+                        <li>开发自定义图表编辑器</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h3>跨平台移动应用</h3>
+                    <span class="timeline-date">2020</span>
+                    <ul>
+                        <li>使用React Native开发</li>
+                        <li>优化应用启动时间</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>教育背景</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>计算机科学与技术 硕士</h3>
+                    <span class="timeline-date">2014-2016 | xx大学</span>
+                    <ul>
+                        <li>研究方向: 人机交互</li>
+                        <li>GPA: 3.8/4.0</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h3>软件工程 学士</h3>
+                    <span class="timeline-date">2010-2014 | xx大学</span>
+                    <ul>
+                        <li>主修课程: 算法设计、Web开发</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>专业技能</h2>
+            <div class="skills-grid">
+                <div class="skill-tag">前端架构</div>
+                <div class="skill-tag">性能优化</div>
+                <div class="skill-tag">TypeScript</div>
+                <div class="skill-tag">Node.js</div>
+                <div class="skill-tag">数据库设计</div>
+                <div class="skill-tag">团队管理</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 简单的滚动动画
+    document.addEventListener('DOMContentLoaded', function() {
+        // 技能条动画
+        const skillBars = document.querySelectorAll('.skill-fill');
+        skillBars.forEach(bar => {
+            bar.style.width = bar.parentElement.previousElementSibling.lastElementChild.textContent;
+        });
+
+        // 简单的滚动观察
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        // 观察卡片元素
+        document.querySelectorAll('.card').forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            observer.observe(card);
+        });
+    });
+</script>
+</body>
+</html>
